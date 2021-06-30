@@ -1,9 +1,9 @@
 import React, {useState, useEffect, useRef} from 'react'
 # import {Button, Icon, Modal} from 'semantic-ui-react'
 import DataTable from './DataTable'
-import FormModal from 'meteor/janmp:sdui-uniforms'
+import {ConfirmationModal, FormModal} from 'meteor/janmp:sdui-uniforms'
 
-export default AutoEditTable = ({
+export default EditableDataTable = ({
   name
   listSchemaBridge, formSchemaBridge
   rows, totalRowCount, loadMoreRows, onRowClick,
@@ -76,22 +76,23 @@ export default AutoEditTable = ({
     }
     {
       if canDelete and deleteConfirmation?
-        <Modal
-          open={confirmationModalOpen}
-          onClose={-> setConfirmationModalOpen false}
-        >
-          <Modal.Content>
-            <p>{deleteConfirmation ? 'fnord'}</p>
-          </Modal.Content>
-          <Modal.Actions>
-            <Button color="red" onClick={-> setConfirmationModalOpen false} >
-              <Icon name="times"/> Abbrechen
-            </Button>
-            <Button color="green" onClick={-> setConfirmationModalOpen false; onDelete id: idForConfirmationModal} >
-              <Icon name="checkmark"/> OK
-            </Button>
-          </Modal.Actions>
-        </Modal>
+        <ConfirmationModal/>
+        # <Modal
+        #   open={confirmationModalOpen}
+        #   onClose={-> setConfirmationModalOpen false}
+        # >
+        #   <Modal.Content>
+        #     <p>{deleteConfirmation ? 'fnord'}</p>
+        #   </Modal.Content>
+        #   <Modal.Actions>
+        #     <Button color="red" onClick={-> setConfirmationModalOpen false} >
+        #       <Icon name="times"/> Abbrechen
+        #     </Button>
+        #     <Button color="green" onClick={-> setConfirmationModalOpen false; onDelete id: idForConfirmationModal} >
+        #       <Icon name="checkmark"/> OK
+        #     </Button>
+        #   </Modal.Actions>
+        # </Modal>
     }
     <DataTable
       {{

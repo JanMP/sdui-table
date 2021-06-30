@@ -1,3 +1,4 @@
+import {Meteor} from 'meteor/meteor'
 import {Mongo} from 'meteor/mongo'
 import React, {useState, useEffect, useRef} from 'react'
 import {meteorApply} from 'meteor/janmp:sdui-uniforms'

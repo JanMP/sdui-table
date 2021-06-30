@@ -10,6 +10,7 @@ import {useDebounce} from '@react-hook/debounce'
 import {useThrottle} from '@react-hook/throttle'
 import useSize from '@react-hook/size'
 import _ from 'lodash'
+import {FaSortUp, FaSortDown} from 'react-icons/fa'
 
 
 newCache = -> new CellMeasurerCache
@@ -27,7 +28,7 @@ resizableHeaderRenderer = ({onResizeRows, isLastOne}) ->
       <div className="ReactVirtualized__Table__headerTruncatedText sort-click-target">
         {label}{
           if sortBy is dataKey
-            <Icon name={if sortDirection is 'ASC' then 'sort up' else 'sort down'} />
+            if sortDirection is 'ASC' then <FaSortUp/> else <FaSortDown />
         }
       </div>
       {<Draggable
@@ -76,14 +77,9 @@ deleteButtonCellRenderer = ({onDelete = ->}) ->
         onDelete {id}
 
     <div style={textAlign: 'right'}>
-      <Button
-        circular
-        basic
-        negative
-        size="mini"
-        icon="trash"
+      <button
         onClick={onClick}
-      />
+      >delete</button>
     </div>
 
 
@@ -107,15 +103,14 @@ SearchInput = ({value, onChange}) ->
     finally
       setDisplayValue newValue
 
-  <Input
-    error={not isValid}
+  <input
     value={displayValue}
-    onChange={(e, d) -> handleSearchChange d.value}
+    onChange={(e) -> handleSearchChange e.target.value}
     icon='search'
   />
 
 
-export default NewDataTable = ({
+export default DataTable = ({
   name,
   schemaBridge,
   rows, limit, totalRowCount,
@@ -238,41 +233,39 @@ export default NewDataTable = ({
       />
 
 
-  <div ref={contentContainerRef} style={height: '100%'}>
+  <div ref={contentContainerRef} style={height: '100%'} className="bg-green-100">
     
     <div ref={headerContainerRef} style={margin: '10px'}>
-      <Grid>
-        <Grid.Row columns={3}>
-          <Grid.Column>
-            <Icon loading={isLoading} color={if isLoading then 'red' else 'green'} name="sync" size="large"/>
-            {rows?.length}/{totalRowCount}
-          </Grid.Column>
-          <Grid.Column>
-            <div style={textAlign: 'center'}>
-              {
-                if canSearch
-                  <SearchInput
-                    size="small"
-                    value={search}
-                    onChange={onChangeSearch}
-                  />
-              }
-            </div>
-          </Grid.Column>
-          <Grid.Column>
-            <div style={textAlign: 'right'}>
-              {
-                if canExport
-                  <Button  basic circular size="small" icon='download' onClick={onExportTable} disabled={not mayExport}/>
-              }
-              {
-                if canAdd
-                  <Button circular basic size="small" icon="plus" onClick={onAdd} disabled={not mayEdit}/>
-              }
-            </div>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
+      <div className="flex justify-between bg-red-100">
+        {###<div>
+          <Icon loading={isLoading} color={if isLoading then 'red' else 'green'} name="sync" size="large"/>
+          {rows?.length}/{totalRowCount}
+        </div>###}
+        <div>
+          <div style={textAlign: 'center'}>
+            {
+              if canSearch
+                <SearchInput
+                  size="small"
+                  value={search}
+                  onChange={onChangeSearch}
+                />
+            }
+          </div>
+        </div>
+        <div>
+          <div style={textAlign: 'right'}>
+            {
+              if canExport
+                <button onClick={onExportTable} disabled={not mayExport}>download</button>
+            }
+            {
+              if canAdd
+                <button onClick={onAdd} disabled={not mayEdit}>+</button>
+            }
+          </div>
+        </div>
+      </div>
     </div>
    
       <InfiniteLoader

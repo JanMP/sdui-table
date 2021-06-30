@@ -1,3 +1,4 @@
+import React from 'react'
 import {DynamicField} from 'meteor/janmp:sdui-uniforms'
 
 #use our uniforms DynamicField in AutoTable

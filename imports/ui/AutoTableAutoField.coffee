@@ -1,5 +1,5 @@
 import React from 'react'
-# import { Icon } from 'semantic-ui-react'
+import {FaCheck, FaTimes} from 'react-icons/fa'
 import DynamicTableField from './DynamicTableField'
 import _ from 'lodash'
 
@@ -24,7 +24,7 @@ export default AutoTableAutoField = ({row, columnKey, schemaBridge, onChangeFiel
         when Date
           <span>{row[columnKey]?.toLocaleString()}</span>
         when Boolean
-          <Icon name={if row[columnKey] then 'check' else 'close'} />
+          if row[columnKey] then <FaCheck/> else <FaTimes />
         when Array
           row[columnKey]?.map (entry, i) ->
             if _.isObject entry
