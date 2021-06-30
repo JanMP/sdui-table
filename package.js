@@ -10,15 +10,23 @@ Package.describe({
   documentation: 'README.md'
 });
 
-Package.onUse(function(api) {
+Package.onUse(function (api) {
   api.versionsFrom('2.2');
   api.use('ecmascript');
+  api.use('coffeescript');
+  api.use('typescript');
+  api.use('janmp:sdui-uniforms');
+  api.use('janmp:sdui-roles');
   api.mainModule('sdui-table.js');
 });
 
-Package.onTest(function(api) {
+Package.onTest(function (api) {
   api.use('ecmascript');
+  api.use('coffeescript');
+  api.use('typescript');
   api.use('tinytest');
+  api.use('janmp:sdui-uniforms');
+  api.use('janmp:sdui-roles');
   api.use('sdui-table');
   api.mainModule('sdui-table-tests.js');
 });
