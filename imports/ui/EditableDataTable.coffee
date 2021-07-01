@@ -32,7 +32,6 @@ export default EditableDataTable = ({
   [confirmationModalOpen, setConfirmationModalOpen] = useState false
   [idForConfirmationModal, setIdForConfirmationModal] = useState ''
 
-
   handleOnDelete =
     unless canDelete
       -> console.error 'handleOnDelete has been called despite canDelete false'

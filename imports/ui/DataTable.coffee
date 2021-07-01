@@ -234,13 +234,14 @@ export default DataTable = ({
 
 
   <div ref={contentContainerRef} style={height: '100%'} className="bg-green-100">
-    
+    <pre>{JSON.stringify {columnKeys, useSort, sortColumn}, null, 2}</pre>
     <div ref={headerContainerRef} style={margin: '10px'}>
       <div className="flex justify-between bg-red-100">
         {###<div>
           <Icon loading={isLoading} color={if isLoading then 'red' else 'green'} name="sync" size="large"/>
           {rows?.length}/{totalRowCount}
         </div>###}
+        <div>{rows?.length}/{totalRowCount}</div>
         <div>
           <div style={textAlign: 'center'}>
             {
