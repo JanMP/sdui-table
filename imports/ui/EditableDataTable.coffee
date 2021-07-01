@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react'
 # import {Button, Icon, Modal} from 'semantic-ui-react'
 import DataTable from './DataTable'
+import ErrorBoundary from './ErrorBoundary'
 import {ConfirmationModal, FormModal} from 'meteor/janmp:sdui-uniforms'
 
 export default EditableDataTable = ({
@@ -93,21 +94,23 @@ export default EditableDataTable = ({
         #   </Modal.Actions>
         # </Modal>
     }
-    <DataTable
-      {{
-        name
-        schemaBridge: listSchemaBridge,
-        rows, totalRowCount, loadMoreRows, onRowClick,
-        sortColumn, sortDirection, onChangeSort, useSort
-        canSearch, search, onChangeSearch
-        canAdd, onAdd
-        canDelete, onDelete: handleOnDelete
-        canEdit, mayEdit
-        onChangeField,
-        canExport, onExportTable
-        mayExport
-        isLoading, loaderContent, loaderIndeterminate
-        overscanRowCount
-      }...}
-    />
+    <ErrorBoundary>
+      <DataTable
+        {{
+          name
+          schemaBridge: listSchemaBridge,
+          rows, totalRowCount, loadMoreRows, onRowClick,
+          sortColumn, sortDirection, onChangeSort, useSort
+          canSearch, search, onChangeSearch
+          canAdd, onAdd
+          canDelete, onDelete: handleOnDelete
+          canEdit, mayEdit
+          onChangeField,
+          canExport, onExportTable
+          mayExport
+          isLoading, loaderContent, loaderIndeterminate
+          overscanRowCount
+        }...}
+      />
+    </ErrorBoundary>
   </>

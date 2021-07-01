@@ -3,6 +3,7 @@ import {Mongo} from 'meteor/mongo'
 import React, {useState, useEffect, useRef} from 'react'
 import {meteorApply} from 'meteor/janmp:sdui-uniforms'
 import EditableDataTable from './EditableDataTable'
+import ErrorBoundary from './ErrorBoundary'
 # import {Button, Icon, Modal, Table} from 'semantic-ui-react'
 import {useTracker} from 'meteor/react-meteor-data'
 import {toast} from 'react-toastify'
@@ -118,6 +119,7 @@ export default MeteorDataAutoTable = (props) ->
   , [search, query, sourceName]
 
   useEffect ->
+    console.log 'setLimit'
     setLimit perLoad
     return
   , [search, query, sortColumn, sortDirection, sourceName]
@@ -134,6 +136,7 @@ export default MeteorDataAutoTable = (props) ->
     not handle.ready()
   , [search, query, sort, skip, limit]
   useEffect ->
+    console.log {subLoading}
     setIsLoading subLoading
   , [subLoading]
   
@@ -148,6 +151,7 @@ export default MeteorDataAutoTable = (props) ->
     rowCountCollection.findOne({})?.count or 0
   
   useEffect ->
+    console.log {subRowCount}
     setTotalRowCount subRowCount
   , [subRowCount]
 
@@ -157,6 +161,7 @@ export default MeteorDataAutoTable = (props) ->
 
   useEffect ->
     unless _.isEqual subRows, rows
+      console.log {subRows}
       setRows subRows
     return
   , [subRows]
@@ -228,21 +233,23 @@ export default MeteorDataAutoTable = (props) ->
         console.error error
         toast.error "Fehler (siehe console.log)"
 
-  <EditableDataTable {{
-    name: sourceName,
-    listSchemaBridge, formSchemaBridge
-    rows, totalRowCount, loadMoreRows, onRowClick,
-    sortColumn, sortDirection, onChangeSort, useSort
-    canSearch, search, onChangeSearch
-    canAdd, onAdd
-    canDelete, onDelete, deleteConfirmation
-    canEdit, mayEdit, submit
-    autoFormChildren, formDisabled, formReadOnly
-    loadEditorData
-    onChangeField,
-    canExport, onExportTable
-    mayExport
-    isLoading, loaderContent, loaderIndeterminate
-  }...} />
+  <ErrorBoundary>
+    <EditableDataTable {{
+      name: sourceName,
+      listSchemaBridge, formSchemaBridge
+      rows, totalRowCount, loadMoreRows, onRowClick,
+      sortColumn, sortDirection, onChangeSort, useSort
+      canSearch, search, onChangeSearch
+      canAdd, onAdd
+      canDelete, onDelete, deleteConfirmation
+      canEdit, mayEdit, submit
+      autoFormChildren, formDisabled, formReadOnly
+      loadEditorData
+      onChangeField,
+      canExport, onExportTable
+      mayExport
+      isLoading, loaderContent, loaderIndeterminate
+    }...} />
+  </ErrorBoundary>
 
     
