@@ -11,7 +11,7 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
-  api.versionsFrom('2.2');
+  api.versionsFrom('2.3');
   api.use('ecmascript');
   api.use('coffeescript');
   api.use('typescript');

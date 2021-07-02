@@ -119,7 +119,6 @@ export default MeteorDataAutoTable = (props) ->
   , [search, query, sourceName]
 
   useEffect ->
-    console.log 'setLimit'
     setLimit perLoad
     return
   , [search, query, sortColumn, sortDirection, sourceName]
@@ -134,9 +133,8 @@ export default MeteorDataAutoTable = (props) ->
     return unless usePubSub
     handle = Meteor.subscribe rowPublicationName, {search, query, sort, skip, limit}
     not handle.ready()
-  , [search, query, sort, skip, limit]
+  
   useEffect ->
-    console.log {subLoading}
     setIsLoading subLoading
   , [subLoading]
   
@@ -144,14 +142,12 @@ export default MeteorDataAutoTable = (props) ->
     return unless usePubSub
     handle = Meteor.subscribe rowCountPublicationName, {query, search}
     not handle.ready()
-  , [query, search]
 
   subRowCount = useTracker ->
     return unless usePubSub
     rowCountCollection.findOne({})?.count or 0
   
   useEffect ->
-    console.log {subRowCount}
     setTotalRowCount subRowCount
   , [subRowCount]
 
@@ -161,7 +157,6 @@ export default MeteorDataAutoTable = (props) ->
 
   useEffect ->
     unless _.isEqual subRows, rows
-      console.log {subRows}
       setRows subRows
     return
   , [subRows]
@@ -202,9 +197,7 @@ export default MeteorDataAutoTable = (props) ->
   onChangeSearch = (d) ->
     setSearch d
 
-  onDelete ?= ({id}) ->
-    console.log "deleteEntry id: #{id}"
-    # setConfirmationModalOpen false
+  onDelete ?= ({id}) ->    # setConfirmationModalOpen false
     meteorApply
       method: deleteMethodName
       data: {id}
