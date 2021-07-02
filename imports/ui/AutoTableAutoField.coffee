@@ -9,15 +9,15 @@ style =
 export default AutoTableAutoField = ({row, columnKey, schemaBridge, onChangeField, measure, mayEdit}) ->
   fieldSchema = schemaBridge.schema._schema[columnKey]
   inner =
-    if (component = fieldSchema.AutoTable?.component)?
+    if (component = fieldSchema.autotable?.component)?
       try
         component {row, columnKey, schemaBridge, onChangeField, measure, mayEdit}
       catch error
         console.error error
-        console.log 'the previous error happened in AutoTableField with params', {row, columnKey, schemaBridge, component}
-    else if fieldSchema.AutoTable?.editable
+        console.log 'the previous error happened in AutotableAutoField with params', {row, columnKey, schemaBridge, component}
+    else if fieldSchema.autotable?.editable
       <DynamicTableField {{row, columnKey, schemaBridge, onChangeField, mayEdit}...}/>
-    else if fieldSchema.AutoTable?.markup
+    else if fieldSchema.autotable?.markup
       <div dangerouslySetInnerHTML={__html: row[columnKey]} />
     else
       switch fieldType = fieldSchema.type.definitions[0].type

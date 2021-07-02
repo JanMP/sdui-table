@@ -46,7 +46,7 @@ resizableHeaderRenderer = ({onResizeRows, isLastOne}) ->
 
 cellRenderer = ({schemaBridge, onChangeField, cache, mayEdit}) ->
   ({dataKey, parent, rowIndex, columnIndex, cellData, rowData}) ->
-    options = schemaBridge.schema._schema[dataKey].AutoTable ? {}
+    options = schemaBridge.schema._schema[dataKey].autotable ? {}
     cache.clear {rowIndex, columnIndex}
     <CellMeasurer
       cache={cache}
@@ -148,14 +148,14 @@ export default DataTable = ({
   columnKeys =
     schema._firstLevelSchemaKeys
     .filter (key) ->
-      options = schema._schema[key].AutoTable ? {}
+      options = schema._schema[key].autotable ? {}
       if key in ['id', '_id']
         not (options.hide ? true) # don't include ids by default
       else
         not (options.hide ? false)
 
   initialColumnWidths = columnKeys.map (key, i, arr) ->
-    schema._schema[key].AutoTable?.columnWidth ? 1/(if arr.length then arr.length else 20)
+    schema._schema[key].autotable?.columnWidth ? 1/(if arr.length then arr.length else 20)
 
   getColumnWidthsFromLocalStorage = ->
     if global.localStorage
@@ -218,7 +218,7 @@ export default DataTable = ({
   columns =
     columnKeys.map (key, i, arr) ->
       schemaForKey = schema._schema[key]
-      options = schemaForKey.AutoTable ? {}
+      options = schemaForKey.autotable ? {}
       isLastOne = i is arr.length-1
       className = if options.overflow then 'overflow'
       headerRenderer = resizableHeaderRenderer({onResizeRows, isLastOne}) #unless isLastOne
