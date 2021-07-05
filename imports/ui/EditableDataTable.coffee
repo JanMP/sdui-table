@@ -38,6 +38,7 @@ export default EditableDataTable = ({
       -> console.error 'handleOnDelete has been called despite canDelete false'
     else
       ({id}) ->
+        console.log 'handleOnDelete', {id, deleteConfirmation}
         if deleteConfirmation?
           setIdForConfirmationModal id
           setConfirmationModalOpen true
@@ -76,23 +77,12 @@ export default EditableDataTable = ({
     }
     {
       if canDelete and deleteConfirmation?
-        <ConfirmationModal/>
-        # <Modal
-        #   open={confirmationModalOpen}
-        #   onClose={-> setConfirmationModalOpen false}
-        # >
-        #   <Modal.Content>
-        #     <p>{deleteConfirmation ? 'fnord'}</p>
-        #   </Modal.Content>
-        #   <Modal.Actions>
-        #     <Button color="red" onClick={-> setConfirmationModalOpen false} >
-        #       <Icon name="times"/> Abbrechen
-        #     </Button>
-        #     <Button color="green" onClick={-> setConfirmationModalOpen false; onDelete id: idForConfirmationModal} >
-        #       <Icon name="checkmark"/> OK
-        #     </Button>
-        #   </Modal.Actions>
-        # </Modal>
+        <ConfirmationModal
+          isOpen={confirmationModalOpen}
+          setIsOpen={setConfirmationModalOpen}
+          text={deleteConfirmation}
+          onConfirm={-> onDelete id: idForConfirmationModal}
+        />
     }
     <ErrorBoundary>
       <DataTable
