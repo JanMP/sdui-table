@@ -1,6 +1,7 @@
 import React from 'react'
-import {FaCheck, FaTimes} from 'react-icons/fa'
 import DynamicTableField from './DynamicTableField'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faCheck, faTimes} from '@fortawesome/free-solid-svg-icons'
 import _ from 'lodash'
 
 style =
@@ -24,7 +25,7 @@ export default AutoTableAutoField = ({row, columnKey, schemaBridge, onChangeFiel
         when Date
           <span>{row[columnKey]?.toLocaleString()}</span>
         when Boolean
-          if row[columnKey] then <FaCheck/> else <FaTimes />
+          if row[columnKey] then <FontAwesomeIcon icon={faCheck}/> else <FontAwesomeIcon icon={faTimes}/>
         when Array
           row[columnKey]?.map (entry, i) ->
             if _.isObject entry

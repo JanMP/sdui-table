@@ -10,7 +10,8 @@ import {useDebounce} from '@react-hook/debounce'
 import {useThrottle} from '@react-hook/throttle'
 import useSize from '@react-hook/size'
 import _ from 'lodash'
-import {FaSortUp, FaSortDown} from 'react-icons/fa'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons'
 
 
 newCache = -> new CellMeasurerCache
@@ -28,7 +29,7 @@ resizableHeaderRenderer = ({onResizeRows, isLastOne}) ->
       <div className="ReactVirtualized__Table__headerTruncatedText sort-click-target">
         {label}{
           if sortBy is dataKey
-            if sortDirection is 'ASC' then <FaSortUp/> else <FaSortDown />
+            if sortDirection is 'ASC' then <FontAwesomeIcon icon={faSortUp}/> else <FontAwesomeIcon icon={faSortDown} />
         }
       </div>
       {<Draggable
