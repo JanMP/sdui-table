@@ -1,5 +1,4 @@
 import React, {useEffect, useState, useRef} from "react"
-# import {Button, Grid, Dimmer, Icon, Input, Loader, Modal} from 'semantic-ui-react'
 import AutoTableAutoField from "./AutoTableAutoField"
 import {
   Column, defaultTableRowRenderer, Table, CellMeasurer, CellMeasurerCache,
@@ -11,7 +10,7 @@ import {useThrottle} from '@react-hook/throttle'
 import useSize from '@react-hook/size'
 import _ from 'lodash'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons'
+import {faPlus, faFileDownload, faSortUp, faSortDown, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 
 newCache = -> new CellMeasurerCache
@@ -77,10 +76,13 @@ deleteButtonCellRenderer = ({onDelete = ->}) ->
       if (id = rowData?._id ? rowData?.id)?
         onDelete {id}
 
-    <div style={textAlign: 'right'}>
+    <div>
       <button
         onClick={onClick}
-      >delete</button>
+        className="bg-red-500 px-3 py-2 my-1 rounded-full text-white "
+      >
+        <FontAwesomeIcon icon={faTrash}/>
+      </button>
     </div>
 
 
@@ -105,9 +107,9 @@ SearchInput = ({value, onChange}) ->
       setDisplayValue newValue
 
   <input
+    type="text"
     value={displayValue}
     onChange={(e) -> handleSearchChange e.target.value}
-    icon='search'
   />
 
 
@@ -234,14 +236,10 @@ export default DataTable = ({
       />
 
 
-  <div ref={contentContainerRef} style={height: '100%'} className="bg-green-100">
+  <div ref={contentContainerRef} style={height: '100%'} className="bg-white">
   
     <div ref={headerContainerRef} style={margin: '10px'}>
-      <div className="flex justify-between bg-red-100">
-        {###<div>
-          <Icon loading={isLoading} color={if isLoading then 'red' else 'green'} name="sync" size="large"/>
-          {rows?.length}/{totalRowCount}
-        </div>###}
+      <div className="flex justify-between p-3">
         <div>{rows?.length}/{totalRowCount}</div>
         <div>
           <div style={textAlign: 'center'}>
@@ -259,11 +257,21 @@ export default DataTable = ({
           <div style={textAlign: 'right'}>
             {
               if canExport
-                <button onClick={onExportTable} disabled={not mayExport}>download</button>
+                <button
+                  onClick={onExportTable} disabled={not mayExport}
+                  className="bg-blue-500 text-white p-2 rounded-full"
+                >
+                  <FontAwesomeIcon icon={faFileDownload} fixedWidth/>
+                </button>
             }
             {
               if canAdd
-                <button onClick={onAdd} disabled={not mayEdit}>+</button>
+                <button
+                  onClick={onAdd} disabled={not mayEdit}
+                  className="bg-blue-500 text-white p-2 rounded-full ml-2"
+                >
+                  <FontAwesomeIcon icon={faPlus} fixedWidth/>
+                </button>
             }
           </div>
         </div>

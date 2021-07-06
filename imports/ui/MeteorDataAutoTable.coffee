@@ -19,7 +19,7 @@ export default MeteorDataAutoTable = (props) ->
   {
   sourceName, listSchemaBridge,
   usePubSub, rowsCollection, rowCountCollection
-  query
+  query = {}
   perLoad
   canEdit = false
   formSchemaBridge
