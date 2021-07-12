@@ -76,7 +76,7 @@ deleteButtonCellRenderer = ({onDelete = ->}) ->
       if (id = rowData?._id ? rowData?.id)?
         onDelete {id}
 
-    <div>
+    <div className="mt-2">
       <button
         onClick={onClick}
         className="icon-button"
@@ -261,16 +261,16 @@ export default DataTable = ({
                   className="icon-button"
                   onClick={onExportTable} disabled={not mayExport}
                 >
-                  <FontAwesomeIcon icon={faFileDownload} fixedWidth size="lg"/>
+                  <FontAwesomeIcon icon={faFileDownload}/>
                 </button>
             }
             {
               if canAdd
                 <button
-                  className="icon-button"
+                  className="icon-button ml-1"
                   onClick={onAdd} disabled={not mayEdit}
                 >
-                  <FontAwesomeIcon icon={faPlus} fixedWidth size="lg"/>
+                  <FontAwesomeIcon icon={faPlus}/>
                 </button>
             }
           </div>
