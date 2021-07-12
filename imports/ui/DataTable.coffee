@@ -79,7 +79,7 @@ deleteButtonCellRenderer = ({onDelete = ->}) ->
     <div>
       <button
         onClick={onClick}
-        className="bg-red-500 px-3 py-2 my-1 rounded-full text-white "
+        className="icon-button"
       >
         <FontAwesomeIcon icon={faTrash}/>
       </button>
@@ -258,19 +258,19 @@ export default DataTable = ({
             {
               if canExport
                 <button
+                  className="icon-button"
                   onClick={onExportTable} disabled={not mayExport}
-                  className="bg-blue-500 text-white p-2 rounded-full"
                 >
-                  <FontAwesomeIcon icon={faFileDownload} fixedWidth/>
+                  <FontAwesomeIcon icon={faFileDownload} fixedWidth size="lg"/>
                 </button>
             }
             {
               if canAdd
                 <button
+                  className="icon-button"
                   onClick={onAdd} disabled={not mayEdit}
-                  className="bg-blue-500 text-white p-2 rounded-full ml-2"
                 >
-                  <FontAwesomeIcon icon={faPlus} fixedWidth/>
+                  <FontAwesomeIcon icon={faPlus} fixedWidth size="lg"/>
                 </button>
             }
           </div>
