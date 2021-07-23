@@ -14,12 +14,13 @@ import {downloadAsFile} from 'meteor/janmp:sdui-backend'
 # import {useDebounce} from '@react-hook/debounce'
 import _ from 'lodash'
 
+defaultQuery = {} # ensures equality between runs
 
 export default MeteorDataAutoTable = (props) ->
   {
   sourceName, listSchemaBridge,
   usePubSub, rowsCollection, rowCountCollection
-  query = {}
+  query = defaultQuery
   perLoad
   canEdit = false
   formSchemaBridge
@@ -119,6 +120,7 @@ export default MeteorDataAutoTable = (props) ->
   , [search, query, sourceName]
 
   useEffect ->
+    console.log [search, query, sortColumn, sortDirection, sourceName]
     setLimit perLoad
     return
   , [search, query, sortColumn, sortDirection, sourceName]
@@ -166,6 +168,7 @@ export default MeteorDataAutoTable = (props) ->
   , [subLoading]
 
   loadMoreRows = ({startIndex, stopIndex}) ->
+    console.log 'loadMoreRows', {startIndex, stopIndex}
     if stopIndex >= limit
       setLimit limit+perLoad
     new Promise (res, rej) ->
