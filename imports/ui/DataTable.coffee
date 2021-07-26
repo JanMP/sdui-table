@@ -107,6 +107,7 @@ SearchInput = ({value, onChange}) ->
       setDisplayValue newValue
 
   <input
+    className="search-input"
     type="text"
     value={displayValue}
     onChange={(e) -> handleSearchChange e.target.value}
