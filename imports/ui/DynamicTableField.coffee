@@ -1,5 +1,5 @@
 import React from 'react'
-import {DynamicField} from 'meteor/janmp:sdui-uniforms'
+import {DynamicField} from 'meteor/janmp:sdui-forms'
 
 #use our uniforms DynamicField in AutoTable
 export default DynamicTableField = ({row, columnKey, schemaBridge, onChangeField, mayEdit}) ->

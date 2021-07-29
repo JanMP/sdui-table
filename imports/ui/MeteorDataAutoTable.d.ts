@@ -1,5 +1,5 @@
 /**
- * 
+ * Some Additional comment
  */
 
  declare interface MeteorDataAutoTableProps {

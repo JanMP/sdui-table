@@ -1,7 +1,7 @@
 import {Meteor} from 'meteor/meteor'
 import {Mongo} from 'meteor/mongo'
 import React, {useState, useEffect, useRef} from 'react'
-import {meteorApply} from 'meteor/janmp:sdui-uniforms'
+import {meteorApply} from 'meteor/janmp:sdui-forms'
 import EditableDataTable from './EditableDataTable'
 import ErrorBoundary from './ErrorBoundary'
 # import {Button, Icon, Modal, Table} from 'semantic-ui-react'

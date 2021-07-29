@@ -85,7 +85,7 @@ deleteButtonCellRenderer = ({onDelete = ->}) ->
       </button>
     </div>
 
-
+# TODO move into sdui-forms
 SearchInput = ({value, onChange}) ->
 
   [isValid, setIsValid] = useState true

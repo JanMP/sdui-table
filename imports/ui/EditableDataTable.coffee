@@ -2,7 +2,7 @@ import React, {useState, useEffect, useRef} from 'react'
 # import {Button, Icon, Modal} from 'semantic-ui-react'
 import DataTable from './DataTable'
 import ErrorBoundary from './ErrorBoundary'
-import {ConfirmationModal, FormModal} from 'meteor/janmp:sdui-uniforms'
+import {ConfirmationModal, FormModal} from 'meteor/janmp:sdui-forms'
 
 export default EditableDataTable = ({
   name

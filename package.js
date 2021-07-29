@@ -12,10 +12,11 @@ Package.describe({
 
 Package.onUse(function (api) {
   api.versionsFrom('2.3');
+  // api.addFiles('imports/ui/fixedReactVirtualized.css', 'client');
   api.use('ecmascript');
   api.use('coffeescript');
   api.use('typescript');
-  api.use('janmp:sdui-uniforms');
+  api.use('janmp:sdui-forms');
   api.use('janmp:sdui-roles');
   api.mainModule('sdui-table.js');
 });
@@ -25,7 +26,7 @@ Package.onTest(function (api) {
   api.use('coffeescript');
   api.use('typescript');
   api.use('tinytest');
-  api.use('janmp:sdui-uniforms');
+  api.use('janmp:sdui-forms');
   api.use('janmp:sdui-roles');
   api.use('sdui-table');
   api.mainModule('sdui-table-tests.js');
