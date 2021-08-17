@@ -18,7 +18,7 @@ export default EditableDataTable = ({
   onChangeField,
   canExport, onExportTable
   mayExport
-  isLoading, loaderContent, loaderIndeterminate
+  isLoading,
   overscanRowCount
 }) ->
 
@@ -98,7 +98,7 @@ export default EditableDataTable = ({
           onChangeField,
           canExport, onExportTable
           mayExport
-          isLoading, loaderContent, loaderIndeterminate
+          isLoading
           overscanRowCount
         }...}
       />

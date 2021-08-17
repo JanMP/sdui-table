@@ -19,7 +19,7 @@ defaultQuery = {} # ensures equality between runs
 export default MeteorDataAutoTable = (props) ->
   {
   sourceName, listSchemaBridge,
-  usePubSub, rowsCollection, rowCountCollection
+  rowsCollection, rowCountCollection
   query = defaultQuery
   perLoad
   canEdit = false
@@ -44,6 +44,9 @@ export default MeteorDataAutoTable = (props) ->
   exportRowsMethodName
   viewTableRole, editRole, exportTableRole
   } = props
+
+  # we only support usePubSub = true atm
+  usePubSub = true
 
   if usePubSub and not (rowsCollection? and rowCountCollection?)
     throw new Error 'usePubSub is true but rowsCollection or rowCountCollection not given'
@@ -75,8 +78,6 @@ export default MeteorDataAutoTable = (props) ->
   [limit, setLimit] = useState perLoad
 
   [isLoading, setIsLoading] = useState false
-  [loaderContent, setLoaderContent] = useState 'Lade Daten...'
-  [loaderIndeterminate, setLoaderIndeterminate] = useState false
 
   [sortColumn, setSortColumn] = useState undefined
   [sortDirection, setSortDirection] = useState undefined
@@ -244,7 +245,7 @@ export default MeteorDataAutoTable = (props) ->
       onChangeField,
       canExport, onExportTable
       mayExport
-      isLoading, loaderContent, loaderIndeterminate
+      isLoading
     }...} />
   </ErrorBoundary>
 
