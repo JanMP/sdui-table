@@ -4,14 +4,12 @@ import React, {useState, useEffect, useRef} from 'react'
 import {meteorApply} from 'meteor/janmp:sdui-forms'
 import EditableDataTable from './EditableDataTable'
 import ErrorBoundary from './ErrorBoundary'
-# import {Button, Icon, Modal, Table} from 'semantic-ui-react'
 import {useTracker} from 'meteor/react-meteor-data'
 import {toast} from 'react-toastify'
 import {useCurrentUserIsInRole} from 'meteor/janmp:sdui-rolechecks'
 import {getColumnsToExport} from 'meteor/janmp:sdui-backend'
 import Papa from 'papaparse'
 import {downloadAsFile} from 'meteor/janmp:sdui-backend'
-# import {useDebounce} from '@react-hook/debounce'
 import _ from 'lodash'
 
 defaultQuery = {} # ensures equality between runs
@@ -125,10 +123,6 @@ export default MeteorDataAutoTable = (props) ->
     setLimit perLoad
     return
   , [search, query, sortColumn, sortDirection, sourceName]
-
-  # useEffect ->
-  #   setDebouncedSearch search
-  # , [search]
 
   skip = 0
 
