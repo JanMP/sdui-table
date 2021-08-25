@@ -17,7 +17,8 @@ Package.onUse(function (api) {
   api.use('coffeescript');
   api.use('typescript');
   api.use('janmp:sdui-forms');
-  api.use('janmp:sdui-roles');
+  api.use('janmp:sdui-rolechecks');
+  api.use('janmp:sdui-backend');
   api.mainModule('sdui-table.js');
 });
 
@@ -27,7 +28,8 @@ Package.onTest(function (api) {
   api.use('typescript');
   api.use('tinytest');
   api.use('janmp:sdui-forms');
-  api.use('janmp:sdui-roles');
+  api.use('janmp:sdui-rolechecks');
+  api.use('janmp:sdui-backend');
   api.use('sdui-table');
   api.mainModule('sdui-table-tests.js');
 });
