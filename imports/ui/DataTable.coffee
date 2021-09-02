@@ -240,7 +240,7 @@ export default DataTable = ({
   <div ref={contentContainerRef} style={height: '100%'} className="bg-white">
   
     <div ref={headerContainerRef} style={margin: '10px'}>
-      <div className="flex justify-between p-3">
+      <div style={display: 'flex', justifyContent: 'space-between'}>
         <div>{rows?.length}/{totalRowCount}</div>
         <div>
           <div style={textAlign: 'center'}>
@@ -268,7 +268,8 @@ export default DataTable = ({
             {
               if canAdd
                 <button
-                  className="icon-button ml-1"
+                  className="icon-button"
+                  style={marginLeft: '1rem'}
                   onClick={onAdd} disabled={not mayEdit}
                 >
                   <FontAwesomeIcon icon={faPlus}/>
