@@ -31,5 +31,5 @@ Package.onTest(function (api) {
   api.use('janmp:sdui-rolechecks');
   api.use('janmp:sdui-backend');
   api.use('sdui-table');
-  api.mainModule('sdui-table-tests.js');
+  api.mainModule('sdui-table-tests.js', 'client', {lazy: true});
 });
