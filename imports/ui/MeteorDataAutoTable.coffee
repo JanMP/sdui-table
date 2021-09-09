@@ -219,7 +219,7 @@ export default MeteorDataAutoTable = (props) ->
       .then (csvString) ->
         downloadAsFile
           dataString: csvString
-          fileName: title ? sourceName
+          fileName: (title ? sourceName) + '.csv'
       .catch (error) ->
         console.error error
         toast.error "Fehler (siehe console.log)"
