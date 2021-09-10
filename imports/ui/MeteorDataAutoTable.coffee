@@ -224,6 +224,7 @@ export default MeteorDataAutoTable = (props) ->
         console.error error
         toast.error "Fehler (siehe console.log)"
 
+
   <ErrorBoundary>
     <EditableDataTable {{
       name: sourceName,

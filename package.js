@@ -19,7 +19,7 @@ Package.onUse(function (api) {
   api.use('janmp:sdui-forms');
   api.use('janmp:sdui-rolechecks');
   api.use('janmp:sdui-backend');
-  api.mainModule('sdui-table.js');
+  api.mainModule('sdui-table-dynamic.coffee');
 });
 
 Package.onTest(function (api) {
@@ -31,5 +31,5 @@ Package.onTest(function (api) {
   api.use('janmp:sdui-rolechecks');
   api.use('janmp:sdui-backend');
   api.use('sdui-table');
-  api.mainModule('sdui-table-tests.js', 'client', {lazy: true});
+  api.mainModule('sdui-table-tests.js');
 });
