@@ -19,7 +19,7 @@ export default MeteorDataAutoTable = (props) ->
   sourceName, listSchemaBridge,
   rowsCollection, rowCountCollection
   query = defaultQuery
-  perLoad
+  perLoad = 500
   canEdit = false
   formSchemaBridge
   canSearch = false
@@ -65,7 +65,6 @@ export default MeteorDataAutoTable = (props) ->
   if onRowClick and canEdit
     throw new Error 'both onRowClick and canEdit set to true'
 
-  perLoad ?= 500
   onRowClick ?= ->
 
   resolveRef = useRef ->

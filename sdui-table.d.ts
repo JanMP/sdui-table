@@ -6,10 +6,11 @@ declare module "meteor/janmp:sdui-table"
   interface MeteorDataAutoTableProps {
     sourceName?: string;
     listSchemaBridge: any;
-    usePubSub: boolean;
     rowsCollection: any;
     rowCountCollection: any;
-    query: object;
+    //* @defualt {}
+    query?: object;
+    //* @default 500
     perLoad?: number;
     canEdit?: boolean;
     formSchemaBridge: any;
@@ -23,12 +24,13 @@ declare module "meteor/janmp:sdui-table"
     canExport?: boolean;
     onExportTable?: () => void;
     onRowClick?: () => void;
-    autoFormChildren: any;
+    autoFormChildren: any;()
     formDisabled?: boolean;
     formReadOnly?: boolean;
+    //* @default true
     useSort?: boolean;
-    getRowMethodName?: () => string;
-    getRowCountMethodName?: () => string;
+    getRowMethodName?: string;
+    getRowCountMethodName?: string;
     rowPublicationName?: string;
     rowCountPublicationName?: string;
     submitMethodName?: string;
