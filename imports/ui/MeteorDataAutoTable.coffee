@@ -118,7 +118,6 @@ export default MeteorDataAutoTable = (props) ->
   , [search, query, sourceName]
 
   useEffect ->
-    console.log [search, query, sortColumn, sortDirection, sourceName]
     setLimit perLoad
     return
   , [search, query, sortColumn, sortDirection, sourceName]
@@ -162,7 +161,6 @@ export default MeteorDataAutoTable = (props) ->
   , [subLoading]
 
   loadMoreRows = ({startIndex, stopIndex}) ->
-    console.log 'loadMoreRows', {startIndex, stopIndex}
     if stopIndex >= limit
       setLimit limit+perLoad
     new Promise (res, rej) ->
@@ -242,5 +240,3 @@ export default MeteorDataAutoTable = (props) ->
       isLoading
     }...} />
   </ErrorBoundary>
-
-    
